@@ -83,6 +83,65 @@ int main()
                                     }
                                 }
                             }
+                        } else if (choice == 3){
+                            float usd = 58.4060;
+                            float jpy = 0.4104;
+                            float gbp = 65.7418;
+                            float hkd = 7.4413;
+                            float chf = 59.7809;
+
+                            int currency;
+                            float tax = 0.12;
+                            printf("1. USD\n 2. JPY\n 3. GBP\n 4. HKD\n 5. CHF\n");
+                            printf("Enter the currency you want to exchange: ");
+                            scanf("%d", &currency);
+                            if (currency == 1){
+                                int amount;
+                                printf("Enter the amount you want to exchange: ");
+                                scanf("%d", &amount);
+                                if (amount > remaining_forex || amount > accounts[i].balance){
+                                    if (amount > remaining_forex){
+                                        printf("The ATM only has %d", remaining_forex);
+                                        continue;
+                                    }
+                                    else if (amount > accounts[i].balance){
+                                        printf("You can only exchange up to %d", accounts[i].balance);
+                                        continue;
+                                    }
+                                }
+                                else {
+                                    accounts[i].balance -= amount;
+                                    remaining_forex -= amount;
+                                    float total = amount / usd;
+                                    float total_tax = total * tax;
+                                    float total_amount = total + total_tax;
+                                    printf("Total amount: %f", total_amount);
+                                    continue;
+                                } 
+                            } else if (currency == 2){
+                                int amount;
+                                printf("Enter the amount you want to exchange: ");
+                                scanf("%d", &amount);
+                                if (amount > remaining_forex || amount > accounts[i].balance){
+                                    if (amount > remaining_forex){
+                                        printf("The ATM only has %d", remaining_forex);
+                                        continue;
+                                    }
+                                    else if (amount > accounts[i].balance){
+                                        printf("You can only exchange up to %d", accounts[i].balance);
+                                        continue;
+                                    }
+                                }
+                                else {
+                                    accounts[i].balance -= amount;
+                                    remaining_forex -= amount;
+                                    float total = amount / jpy;
+                                    float total_tax = total * tax;
+                                    float total_amount = total + total_tax;
+                                    printf("Total amount: %f", total_amount);
+                                    continue;
+                                }
+                            }
                         }
                     }
                 } else if (i == 9){
