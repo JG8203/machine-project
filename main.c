@@ -62,7 +62,28 @@ int main()
                                 printf("Remaining balance: %d", accounts[i].balance);
                                 continue;
                             }
-                        } 
+                        } else if (choice == 2) {
+                            int transfer, account_transfer;
+                            printf("Enter the account number you want to transfer: ");
+                            scanf("%d", &account_transfer);
+                            printf("Enter the amount you want to transfer: ");
+                            scanf("%d", &transfer);
+                            if (transfer > accounts[i].balance){
+                                printf("You can only transfer up to %d", accounts[i].balance);
+                                continue;
+                            }
+                            else {
+                                accounts[i].balance -= transfer;
+                                for (int j = 0; j < 10; j++){
+                                    if (account_transfer == accounts[j].id){
+                                        accounts[j].balance += transfer;
+                                        printf("Remaining balance: %d", accounts[i].balance);
+                                        printf("Account %d balance: %d", accounts[j].id, accounts[j].balance);
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
                     }
                 } else if (i == 9){
                     printf("Invalid username or pin\n");
