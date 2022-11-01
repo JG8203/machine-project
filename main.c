@@ -24,15 +24,23 @@ struct user {
     int balance;
 };
 
+void clearTerminal(){
+    system("clear");
+};
+
 void load_data(struct user *user, int *size){
     //function to load random data into struct
     struct user accounts[] = {{9999,123456,2000},{9998,123456,2000},{9997,123456,2000},{9996,123456,2000},{9995,123456,2000},{9994,123456,2000},{9993,123456,2000},{9992,123456,2000},{9991,123456,2000},{9990,123456,2000}};
-    *size = sizeof(accounts)/sizeof(accounts[0]);
     for(int i = 0; i < *size; i++){
         user[i] = accounts[i];
     }
 }
 
+void debugMode(struct user *user, int *size){
+    for (int i = 0; i < *size; i++){
+        printf("id: %d, pin: %d, balance: %d\n", user[i].id, user[i].pin, user[i].balance);
+    }
+};
 int credentialsCheck(int id, int pin,struct user *user, int *size){
     // function to check credentials
     for (int i = 0; i < *size; i++){
@@ -53,26 +61,48 @@ int loginForm(struct user *user, int *size){
     return credentialsCheck(id, pin, user, size);
 };
 
-void loggedIn(int index, struct user *user, int *size){
-    // function to display menu
-    int choice;
-    printf("1. Check Balance\n 2. Transfer Money\n 3. Exit");
-    scanf("%d", &choice);
-    switch (choice){
-        case 1:
-            printf("Your balance is %d", user[index].balance);
+int checkBalance(int index, struct user *user){
+    // function to check balance
+    return user[index].balance;
+};
+
+void transferMoney(int *index, struct user *user, int *size){
+    int user1, user2, amount;
+    user1 = *index;
+    printf("Enter the id of the person you want to transfer money to: ");
+    scanf("%d", &user2);
+    printf("Enter the amount you want to transfer: ");
+    scanf("%d", &amount);
+    for (int i = 0; i < *size; i++){
+        if (user2 == user[i].id){
+            user[user1].balance -= amount;
+            user[i].balance += amount;
+            printf("Transfer successful\n");
             break;
-        case 2:
-            //transferMoney(index, user, size);
-            break;
-        case 3:
-            exit(0);
-            break;
-        default:
-            printf("Invalid choice");
-            break;
+        }
     }
 };
+
+void loggedIn(int *index, struct user *user, int *size){
+    clearTerminal();
+    //print pointer index address
+    debugMode(user, size);
+    int id = *index;
+    printf("%d", user[*index].id);
+    int choice;
+    printf("\n1. Check Balance\n 2. Transfer Money\n 3. Exit");
+    scanf("%d", &choice);
+    if (choice == 1){
+        printf("Your balance is %d", checkBalance(id, user));
+    }
+    else if (choice == 2){
+        transferMoney(index, user, size);
+    }
+    else {
+        *index = -1;
+    }
+};
+
 
 int tryLogin(struct user *user, int *size){
     int id, pin, tries = 0;
@@ -84,21 +114,15 @@ int tryLogin(struct user *user, int *size){
             return index;
         }
         else{
-            printf("Login failed. Try again");
             tries++;
         }
     }
     if (tries == 3){
-        printf("You have exceeded the number of tries. Try again later");
+        printf("\nYou have exceeded the number of tries. Try again later");
     }
     return -1;
 };
 
-void printAllCredentials(struct user *user, int *size){
-    for (int i = 0; i < *size; i++){
-        printf("id: %d, pin: %d, balance: %d", user[i].id, user[i].pin, user[i].balance);
-    }
-};
 
 int main()
 {
@@ -106,10 +130,10 @@ int main()
     int size = 10;
     struct user accounts[size];
     load_data(accounts, &size);
-    printAllCredentials(accounts, &size);
+    debugMode(accounts, &size);
     int index = tryLogin(accounts, &size);
     while (index != -1){
-        loggedIn(index, accounts, &size);
+        loggedIn(&index, accounts, &size);
     }
 
     return 0;
