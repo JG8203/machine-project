@@ -142,6 +142,19 @@ int main()
                                     continue;
                                 }
                             }
+                        } else if (choice == 4) {
+                        
+                            int bill;
+                            // cebu pacific, philcare, and paramount life are available for all users
+                            // toyota financial services, bankard, rcbc, mastercard, and city loft are only available for account numbers which are prime numbers.
+                            // unionbank, and unistar are only available for account numbers which are divisible by 4
+                            // hsbc personal loans, easytrip, psbank loans and pldt are only available for account numbers which are in the fibonacci sequencoe
+                            int choice;
+                            int user_bills[3];
+                            if (accounts[i].id % 4 == 0){
+                                user_bills[0] = 1;
+                            }
+
                         }
                     }
                 } else if (i == 9){
