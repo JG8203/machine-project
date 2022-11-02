@@ -78,31 +78,124 @@ void transferMoney(int *index, struct user *user, int *size){
             user[user1].balance -= amount;
             user[i].balance += amount;
             printf("Transfer successful\n");
-            break;
         }
     }
 };
 
-void loggedIn(int *index, struct user *user, int *size){
+void withdrawMoney(int *index, struct user *user, int * available_withdrawal){
+    int amount;
+    printf("Enter the amount you want to withdraw: ");
+    scanf("%d", &amount);
+    if (amount > *available_withdrawal || amount > user[*index].balance){
+        printf("You can only withdraw %d\n", *available_withdrawal);
+    } else {
+        user[*index].balance -= amount;
+        *available_withdrawal -= amount;
+        printf("Withdrawal successful\n");
+    }
+};
+
+void exchangeForex(int *index, struct user *user, int *available_forex){
+    //exchange with 12% tax.
+    float usd = 58.4060;
+    float jpy = 0.4104;
+    float gbp = 65.7418;
+    float hkd = 7.4413;
+    float chf = 59.7809;
+    int currency;
+    float amount;
+    float withdrawal;
+    float tax = 0.12;
+
+    printf("1. USD\n 2. JPY\n 3. GBP\n 4. HKD\n 5. CHF\n");
+    printf("Enter the currency you want to exchange: ");
+    scanf("%d", &currency);
+    printf("Enter the amount of the currency you'd like to withdraw: ");
+    scanf("%f", &amount);
+    if (currency == 1) {
+        if (amount > *available_forex || amount > user[*index].balance) {
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+        } else {
+            withdrawal = amount * usd;
+            withdrawal = withdrawal - (withdrawal * tax);
+            user[*index].balance -= withdrawal;
+            *available_forex -= withdrawal;
+            printf("Transaction successful. You have withdrawn %f USD, from %f Php.\n", withdrawal, amount);
+        }
+    } else if (currency == 2) {
+        if (amount > *available_forex || amount > user[*index].balance) {
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+        } else {
+            withdrawal = amount * jpy;
+            withdrawal = withdrawal - (withdrawal * tax);
+            user[*index].balance -= withdrawal;
+            *available_forex -= withdrawal;
+            printf("Transaction successful. You have withdrawn %f JPY, from %f Php.\n", withdrawal, amount);
+        }
+    } else if (currency == 3) {
+        if (amount > *available_forex || amount > user[*index].balance) {
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+        } else {
+            withdrawal = amount * gbp;
+            withdrawal = withdrawal - (withdrawal * tax);
+            user[*index].balance -= withdrawal;
+            *available_forex -= withdrawal;
+            printf("Transaction successful. You have withdrawn %f GBP, from %f Php.\n", withdrawal, amount);
+        }
+    } else if (currency == 4) {
+        if (amount > *available_forex || amount > user[*index].balance) {
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+        } else {
+            withdrawal = amount * hkd;
+            withdrawal = withdrawal - (withdrawal * tax);
+            user[*index].balance -= withdrawal;
+            *available_forex -= withdrawal;
+            printf("Transaction successful. You have withdrawn %f HKD, from %f Php.\n", withdrawal, amount);
+        }
+    } else if (currency == 5) {
+        if (amount > *available_forex || amount > user[*index].balance) {
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+        } else {
+            withdrawal = amount * chf;
+            withdrawal = withdrawal - (withdrawal * tax);
+            user[*index].balance -= withdrawal;
+            *available_forex -= withdrawal;
+            printf("Transaction successful. You have withdrawn %f CHF, from %f Php.\n", withdrawal, amount);
+        }
+    } else {
+        printf("Invalid currency. Exiting...");
+        getchar();
+    }
+};
+
+void loggedIn(int *index, struct user *user, int *size, int * available_forex, int * available_withdrawal){
     clearTerminal();
     //print pointer index address
     debugMode(user, size);
     int id = *index;
     printf("%d", user[*index].id);
     int choice;
-    printf("\n1. Check Balance\n 2. Transfer Money\n 3. Exit");
+    printf("\n1. Withdrawal\n 2. Money Transfer\n 3. Foreign Currency Exchange\n 4. Bills Payment \n 5. Online Shop\n 6. Logout");
     scanf("%d", &choice);
     if (choice == 1){
-        printf("Your balance is %d", checkBalance(id, user));
-    }
-    else if (choice == 2){
+        withdrawMoney(index, user, available_withdrawal);
+    } else if (choice == 2){
         transferMoney(index, user, size);
-    }
-    else {
+    } else if (choice == 3) {
+        exchangeForex(index, user, available_forex);
+    } else if (choice == 4) {
+        //bills()
+    } else if (choice == 5) {
+        //onlineShop()
+    } else if (choice == 6){
         *index = -1;
     }
 };
-
 
 int tryLogin(struct user *user, int *size){
     int id, pin, tries = 0;
@@ -126,14 +219,15 @@ int tryLogin(struct user *user, int *size){
 
 int main()
 {
-
+    int available_forex = 3000;
+    int available_withdrawal = 5000;
     int size = 10;
     struct user accounts[size];
     load_data(accounts, &size);
     debugMode(accounts, &size);
     int index = tryLogin(accounts, &size);
     while (index != -1){
-        loggedIn(&index, accounts, &size);
+        loggedIn(&index, accounts, &size, &available_forex, &available_withdrawal);
     }
 
     return 0;
