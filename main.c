@@ -30,7 +30,7 @@ void clearTerminal(){
 
 void load_data(struct user *user, int *size){
     //function to load random data into struct
-    struct user accounts[] = {{9999,123456,2000},{9998,123456,2000},{9997,123456,2000},{9996,123456,2000},{9995,123456,2000},{9994,123456,2000},{9993,123456,2000},{9992,123456,2000},{9991,123456,2000},{9990,123456,2000}};
+    struct user accounts[] = {{60,123456,2000},{9998,123456,2000},{9997,123456,2000},{9996,123456,2000},{9995,123456,2000},{9994,123456,2000},{9993,123456,2000},{9992,123456,2000},{9991,123456,2000},{9990,123456,2000}};
     for(int i = 0; i < *size; i++){
         user[i] = accounts[i];
     }
@@ -173,6 +173,157 @@ void exchangeForex(int *index, struct user *user, int *available_forex){
     }
 };
 
+int isPrime(int id){
+    // function to check if id is prime
+    int i, flag = 0;
+    for(i = 2; i <= id/2; ++i){
+        if(id % i == 0){
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 0){
+        return 1;
+    } else {
+        return 0;
+    }
+};
+
+int isFibonacci(int id){
+    // function to check if id is fibonacci
+    int first = 0, second = 1, next, c;
+    for (c = 0; c <= id; c++){
+        if (first == id){
+            return 1;
+        }
+        next = first + second;
+        first = second;
+        second = next;
+    }
+    return 0;
+};
+
+
+
+void getAvailablePayments(int *index, struct user * user, char *options[]){
+/* payments to Loyola Plans and ICC-Bayantel are available if user id is divisible by 15
+     Toyota Financial Services, Bankard/RCBC-JCB/Mastercard/Visa, and City Loft: User IDs that are prime numbers
+    ○ Unionbank Credit Cards and Unistar: User IDs that are composite and divisible by 4 ○ HSBC Personal Loans, Easytrip, PSBank Loans, and PLDT: Numbers included in the Fibonacci sequence (0,1,1,2,3,5,8,13,21, …)
+
+○ Cebu Pacific, Philcare (Philhealthcare Inc.) and Paramount Life: Available for all users
+*/
+    int id = user[*index].id;
+    int i = 0;
+    if (1==1){
+        options[i] = "Cebu Pacific";
+        i++;
+        options[i] = "Philcare (Philhealthcare Inc.)";
+        i++;
+        options[i] = "Paramount Life";
+    }
+    if (id % 15 == 0){
+        options[i] = "Loyola Plans";
+        i++;
+        options[i] = "ICC-Bayantel";
+        i++;
+    }
+    if (isPrime(id)){
+        options[i] = "Toyota Financial Services";
+        i++;
+        options[i] = "Bankard/RCBC-JCB/Mastercard/Visa";
+        i++;
+        options[i] = "City Loft";
+        i++;
+    }
+    if (id % 4 == 0){
+        options[i] = "Unionbank Credit Cards";
+        i++;
+        options[i] = "Unistar";
+        i++;
+    }
+    if (isFibonacci(id)){
+        options[i] = "HSBC Personal Loans";
+        i++;
+        options[i] = "Easytrip";
+        i++;
+        options[i] = "PSBank Loans";
+        i++;
+        options[i] = "PLDT";
+        i++;
+    }
+
+};
+
+void printAvailablePayments(char *options[]){
+    int choice;
+    int i = 0;
+    while (options[i] != NULL){
+        printf("[%d]. %s\n", i+1, options[i]);
+        i++;
+    }
+};
+
+void genericBill(char action[], int *index, struct user * user){
+    float amount;
+    printf("Enter the amount of the bill: ");
+    scanf("%f", &amount);
+    if (amount > user[*index].balance){
+        printf("Transaction cannot proceed. Exiting...");
+        getchar();
+    } else {
+        user[*index].balance -= amount;
+        printf("Transaction to %s successful. You have withdrawn %f Php.\n", action, amount);
+    }
+};
+
+void checkAction(int choice, char *options[], int * index, struct user *user, int size){
+    //check action based on the options within the array
+    char action[50];
+    strcpy(action, options[choice-1]);
+    if (strcmp(action, "Cebu Pacific") == 0){
+        genericBill(action, index, user);
+    } else if (strcmp(action, "Philcare (Philhealthcare Inc.)") == 0){
+        printf("Philcare (Philhealthcare Inc.)");
+    } else if (strcmp(action, "Paramount Life") == 0){
+        printf("Paramount Life");
+    } else if (strcmp(action, "Loyola Plans") == 0){
+        printf("Loyola Plans");
+    } else if (strcmp(action, "ICC-Bayantel") == 0){
+        printf("ICC-Bayantel");
+    } else if (strcmp(action, "Toyota Financial Services") == 0){
+        printf("Toyota Financial Services");
+    } else if (strcmp(action, "Bankard/RCBC-JCB/Mastercard/Visa") == 0){
+        printf("Bankard/RCBC-JCB/Mastercard/Visa");
+    } else if (strcmp(action, "City Loft") == 0){
+        printf("City Loft");
+    } else if (strcmp(action, "Unionbank Credit Cards") == 0){
+        printf("Unionbank Credit Cards");
+    } else if (strcmp(action, "Unistar") == 0){
+        printf("Unistar");
+    } else if (strcmp(action, "HSBC Personal Loans") == 0){
+        printf("HSBC Personal Loans");
+    } else if (strcmp(action, "Easytrip") == 0){
+        printf("Easytrip");
+    } else if (strcmp(action, "PSBank Loans") == 0){
+        printf("PSBank Loans");
+    } else if (strcmp(action, "PLDT") == 0){
+        printf("PLDT");
+    } else {
+        printf("Invalid choice. Exiting...");
+        getchar();
+    }
+};
+
+void payBills(int *index, struct user *user, int size){
+    char * billers[14] = {};
+    getAvailablePayments(index, user, billers);
+    printAvailablePayments(billers);
+    int choice;
+    printf("Enter the number of the biller you'd like to pay: ");
+    scanf("%d", &choice);
+    checkAction(choice, billers, index, user, size);
+};
+
 void loggedIn(int *index, struct user *user, int *size, int * available_forex, int * available_withdrawal){
     clearTerminal();
     //print pointer index address
@@ -189,7 +340,7 @@ void loggedIn(int *index, struct user *user, int *size, int * available_forex, i
     } else if (choice == 3) {
         exchangeForex(index, user, available_forex);
     } else if (choice == 4) {
-        //bills()
+        payBills(index, user, *size);
     } else if (choice == 5) {
         //onlineShop()
     } else if (choice == 6){
