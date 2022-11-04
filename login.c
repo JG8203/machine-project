@@ -216,47 +216,425 @@ void moneyTransfer(int * current_id,
         printf("Insufficient balance");
     } else {
         if (id == *id1) {
-            *balance1 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id1) {
+                if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance1 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id2) {
-            *balance2 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id2) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance2 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id3) {
-            *balance3 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id3) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance3 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id4) {
-            *balance4 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id4) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance4 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id5) {
-            *balance5 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id5) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance5 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id6) {
-            *balance6 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id6) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance6 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id7) {
-            *balance7 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id7) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance7 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id8) {
-            *balance8 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id8) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance8 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id9) {
-            *balance9 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
+            if (*current_id != *id9) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id10){
+                    *balance10 -= amount;
+                    balance9 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         } else if (id == *id10) {
-            *balance10 += amount;
-            *current_balance -= amount;
-            printf("Transfer successful");
-        } else {
-            printf("Invalid ID");
+            if (*current_id != *id10) {
+                if (*current_id == *id1){
+                    *balance1 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id2){
+                    *balance2 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id3){
+                    *balance3 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id4){
+                    *balance4 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id5){
+                    *balance5 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id6){
+                    *balance6 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id7){
+                    *balance7 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id8){
+                    *balance8 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                } else if (*current_id == *id9){
+                    *balance9 -= amount;
+                    balance10 += amount;
+                    *current_balance -= amount;
+                }
+            } else {
+                printf("You cannot transfer money to yourself");
+            }
         }
     }
 }
