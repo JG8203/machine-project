@@ -372,7 +372,7 @@ int main()
 {
     int available_forex = 3000;
     int available_withdrawal = 5000;
-    int size = 10;
+    const int size = 10;
     struct user accounts[size];
     load_data(accounts, &size);
     debugMode(accounts, &size);

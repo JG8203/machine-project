@@ -1,4 +1,4 @@
-xdddd // banking thingy. last before last rewrite xd
+// banking thingy. last before last rewrite xd
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +11,7 @@ struct user {
     int pin;
     int balance;
 };
+
 void clearTerminal() {
     system("clear");
 };
@@ -55,15 +56,47 @@ int login(struct user *users, int *id) {
     return 0;
 };
 
+
+void logout(struct user *users, int (*id)) {
+    *id = -1;
+    login(users, id);
+};
+
+void loggedIn(struct user *users, int *id) {
+    int choice;
+    printf("Welcome to bank!\n");
+    printf("1. Check balance\n");
+    printf("2. Withdraw\n");
+    printf("3. Logout\n");
+    printf("Enter your choice: ");
+    scanf(" %d", &choice);
+    if (choice == 1) {
+        // checkBalance(users, *id);
+    } else if (choice == 2) {
+        // withdraw(users, *id);
+    } else if (choice == 3) {
+        logout(users, id);
+    } else {
+        printf("Invalid choice. Try again.\n");
+    }
+
+};
+
+
 int main(){
     int id;
     struct user accounts[SIZE];
     loadUsers(accounts);
     printUsers(accounts);
-    if (login(accounts, &id)) {
-        printf("Logged in as %d", id);
-    } else {
-        printf("Too many tries. Exiting.");
+    int current_id = login(accounts, &id);
+    while (current_id) {
+        if (current_id != -1) {
+            loggedIn(accounts, &id);
+        }
+        else if (current_id == -1) {
+            printf("You have been logged out.\n");
+
+        }
     }
     return 0;
 }
